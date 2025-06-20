@@ -1,8 +1,10 @@
 import WhatsAppClient from "./whatsapp";
+import { enqueueMessage, startPipeline } from "../controller/pipeline.js";
 
 class WhatsAppManager {
     constructor() {
         this.clients = new Map(); // Map<id, WhatsAppClient>
+        startPipeline(); // Let the pipeline start chewing messages
     }
 
     addClient(id, config = {}) {
@@ -61,10 +63,8 @@ class WhatsAppManager {
         return this.clients.get(id);
     }
 
-    _handleIncomingMessage(clientId, message) {
-        console.log(`[${clientId}] Incoming message from ${message.from}: ${message.body}`);
-        // Deep sigh...
-        // Aight, let's just move on with the pipeline...
+     _handleIncomingMessage(clientId, message) {
+        enqueueMessage(clientId, message); // Let pipeline handle it
     }
 }
 
