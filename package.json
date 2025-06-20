@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Iteranya/delta#readme",
   "dependencies": {
+    "openai": "^5.5.1",
+    "qrcode": "^1.5.4",
     "whatsapp-web.js": "^1.30.0"
   }
 }
